@@ -1,0 +1,73 @@
+.operation-selector input {
+    display: none;
+}
+
+.operation-selector {
+    --container_width: 325px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2em;
+    background-color: rgb(from var(--primary-color) r g b / 50%);
+    border: 1px solid var(--secondary-color);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--text-color-disabled);
+    width: var(--container_width);
+    overflow: hidden;
+    height: 55px;
+    /* box-shadow: 0px 4px 15px 0px rgba(255, 255, 255, 0.1); */
+    /* border: 1px solid rgba(53, 52, 52, 0.226); */
+    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1); */
+}
+
+[data-theme="light"] .operation-selector {
+    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1); */
+}
+
+.operation-selector label {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px;
+    z-index: 1;
+    font-weight: 600;
+    /* letter-spacing: -1px; */
+    font-size: small;
+    /* font-family: 'Kaushan Script', cursive; */
+    transition: all 0.35s ease;
+}
+
+.selection {
+    --size-reduction-width: 0.5em;
+    --size-reduction-height: 20%;
+    display: block;
+    position: absolute;
+    height: calc(100% - var(--size-reduction-height));
+    width: calc(var(--container_width) / 2 - var(--size-reduction-width));
+    z-index: 0;
+    left: calc(var(--size-reduction-width) / 2);
+    top: calc(var(--size-reduction-height) / 2);
+    transition: var(--op-transition);
+    border-radius: 2em;
+}
+
+.operation-selector label:has(input:checked) {
+    color: var(--text-color);
+}
+
+.operation-selector label:has(input:checked)~.selection {
+    background-color: var(--secondary-color);
+    display: inline-block;
+}
+
+.operation-selector label:nth-child(1):has(input:checked)~.selection {
+    transform: translateX(calc(var(--container_width) * 0 / 2));
+}
+
+.operation-selector label:nth-child(2):has(input:checked)~.selection {
+    transform: translateX(calc(var(--container_width) * 1 / 2));
+}

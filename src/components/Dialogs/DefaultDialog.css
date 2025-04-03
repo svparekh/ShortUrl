@@ -1,0 +1,40 @@
+dialog {
+    /* transition: display 0.15s allow-discrete, overlay 0.15s allow-discrete, opacity 0.25s allow-discrete, translate 0.25s allow-discrete, background-color 0.25s allow-discrete; */
+    transition: all .15s ease, transform .5s cubic-bezier(.32, .72, 0, 1), box-shadow .5s cubic-bezier(.32, .72, 0, 1);
+
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    opacity: 0;
+    max-width: 90vw;
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+
+    border-radius: 2em;
+    transform: translateY(25px);
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0);
+
+    z-index: 1;
+}
+
+dialog[open] {
+    opacity: 1;
+
+    pointer-events: inherit;
+    -webkit-user-select: auto;
+    user-select: auto;
+    transform: translateY(0px);
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.4);
+
+    z-index: 1;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0);
+}

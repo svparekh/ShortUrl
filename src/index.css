@@ -1,0 +1,397 @@
+@font-face {
+  font-family: 'Kaushan Script';
+  src: local('cursive'), url(./assets/Kaushan_Script/KaushanScript-Regular.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype', 'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: local('regular'), url(./assets/Ubuntu_Mono/UbuntuMono-Regular.ttf) format('truetype');
+  /* src: local('bold'), url(./assets/Ubuntu_Mono/UbuntuMono-Bold.ttf) format('truetype'); */
+  /* src: local('bolditalic'), url(./assets/Ubuntu_Mono/UbuntuMono-BoldItalic.ttf) format('truetype'); */
+  /* src: local('italic'), url(./assets/Ubuntu_Mono/UbuntuMono-Italic.ttf) format('truetype'); */
+  /* other formats include: 'woff2', 'truetype, 'opentype', 'embedded-opentype', and 'svg' */
+}
+
+* {
+  box-sizing: border-box;
+  /* Includes padding and border in the width/height */
+}
+
+[data-theme='light'] {
+  --background-color: #f5f5f5;
+  --primary-color: #e4e4e4;
+  --secondary-color: #d3d3d3;
+  --tertiary-color: #c9c9c9;
+  --accent-color: #80C2D9;
+  --text-color: #5f5f5f;
+  --text-color-disabled: #8a8a8a;
+  --primary-generate-button: 255, 90, 120;
+  --secondary-generate-button: 150, 50, 60;
+}
+
+:root {
+  --primary-color: #2E2E2E;
+  --secondary-color: #505050;
+  --tertiary-color: #5e5e5e;
+  --accent-color: #80C2D9;
+  --text-color: #e0e0e0;
+  --text-color-disabled: #999999;
+  --background-color: #1e1e1e;
+  --primary-generate-button: 255, 90, 120;
+  --secondary-generate-button: 110, 38, 45;
+
+  --logo-color: #45BCE7;
+
+
+
+  /* Transitions */
+  --transition: all 0.15s ease;
+  --op-transition: all .15s ease, transform 0.5s ease;
+  /* --op-transition: all .15s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  /* --theme-transition: all .15s ease, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  --quadratic-curve: cubic-bezier(.32, .72, 0, 1);
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  background-size: cover;
+
+  /* font-synthesis: none; */
+  text-rendering: optimizeLegibility;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+  transition: background-color 0.15s ease;
+}
+
+:root:has(body[data-theme='light']) {
+  background-color: #f5f5f5;
+  color: #5f5f5f;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+.link {
+  font-family: 'Kaushan Script', cursive;
+  color: var(--text-color);
+  transition: var(--transition);
+  font-size: medium;
+}
+
+.link:hover,
+.link:active,
+.link:link {
+  color: var(--logo-color);
+}
+
+
+.primary-card-blurred {
+  color: var(--text-color);
+  background-color: rgb(from var(--primary-color) r g b / 50%);
+  border: 1px solid var(--secondary-color);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.secondary-card-blurred {
+  color: var(--text-color);
+  background-color: rgb(from var(--secondary-color) r g b / 50%);
+  border: 1px solid var(--tertiary-color);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.primary-card-solid {
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.secondary-card-solid {
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--tertiary-color);
+}
+
+
+
+/* BUTTONS */
+
+
+.default-button {
+  border-radius: 0.5em;
+  padding: 0.35em 1em 0.4em 1em;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: medium;
+  transition: var(--transition);
+
+  color: var(--text-color-disabled);
+  background-color: var(--primary-color);
+  border: 1px solid var(--tertiary-color);
+}
+
+.default-button:hover {
+  background-color: rgb(from var(--secondary-color) r g b / 50%);
+  color: var(--text-color);
+}
+
+.default-button:active {
+  background-color: rgb(from var(--secondary-color) r g b / 100%);
+  color: var(--text-color);
+}
+
+
+
+/* RED BUTTON */
+.red-button {
+  background-color: transparent;
+  color: #CD7979;
+  border-color: transparent;
+}
+
+.red-button:hover {
+  background-color: transparent;
+  color: #ffa2a2;
+  border-color: transparent;
+}
+
+.red-button:active {
+  background-color: transparent;
+  color: #e28888;
+  border-color: transparent;
+}
+
+[data-theme="light"] .red-button {
+  background-color: transparent;
+  color: #F17676;
+  border-color: transparent;
+}
+
+[data-theme="light"] .red-button:hover {
+  background-color: transparent;
+  color: #F17676;
+  border-color: transparent;
+}
+
+[data-theme="light"] .red-button:active {
+  background-color: transparent;
+  color: #F17676;
+  border-color: transparent;
+}
+
+
+/* DEFAULT BUTTON */
+.primary-button {
+  background-color: rgb(from var(--accent-color) r g b / 25%);
+  /* background-color: #434F53; */
+  color: #96B3BD;
+  border-color: #72919B;
+}
+
+.primary-button:hover {
+  background-color: rgb(from var(--accent-color) r g b / 37.5%);
+  border-color: #d3f4ff6c;
+  color: #ebfaff;
+
+  /* background-color: #566164; */
+  /* color: #96B3BD; */
+  /* border-color: #809CA5; */
+}
+
+.primary-button:active {
+  background-color: rgb(from var(--accent-color) r g b / 50%);
+  border-color: rgb(from var(--accent-color) r g b / 50%);
+
+  /* background-color: #697275; */
+  color: #ebfaff;
+  /* border-color: #8EA7AF; */
+}
+
+[data-theme="light"] .primary-button {
+  background-color: rgb(from var(--accent-color) r g b / 25%);
+  color: #72adbe;
+  border-color: #A7CBD6;
+}
+
+[data-theme="light"] .primary-button:hover {
+  background-color: rgb(from var(--accent-color) r g b / 37.5%);
+  color: #578491;
+  border-color: #A7CBD6;
+}
+
+[data-theme="light"] .primary-button:active {
+  background-color: rgb(from var(--accent-color) r g b / 50%);
+  color: #578491;
+  border-color: #A7CBD6;
+}
+
+
+
+
+/* INPUTS */
+
+textarea {
+  padding: 0.5em 0.8em;
+  min-height: 5em;
+  outline: none;
+  overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  -webkit-transition: border 0.15s ease;
+  transition: border 0.15s ease;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+}
+
+textarea:hover {
+  color: var(--text-color);
+  border: 1px solid rgba(from var(--text-color-disabled) r g b / 50%);
+
+}
+
+textarea:focus {
+  color: var(--text-color);
+  border: 1px solid rgba(from var(--accent-color) r g b / 50%);
+}
+
+textarea.invalid:hover {
+  border: 1px solid #ee545479;
+
+}
+
+textarea.invalid:focus {
+  border: 1px solid #ee545479;
+}
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=password] {
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+}
+
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=url]:hover,
+input[type=tel]:hover,
+input[type=password]:hover {
+  color: var(--text-color);
+  border: 1px solid rgba(from var(--text-color-disabled) r g b / 50%);
+
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=url]:focus,
+input[type=tel]:focus,
+input[type=password]:focus {
+  color: var(--text-color);
+  border: 1px solid rgba(from var(--accent-color) r g b / 50%);
+}
+
+input[type=text].invalid:hover,
+input[type=email].invalid:hover,
+input[type=url].invalid:hover,
+input[type=tel].invalid:hover,
+input[type=password].invalid:hover {
+  border: 1px solid #ee545479;
+
+}
+
+input[type=text].invalid:focus,
+input[type=email].invalid:focus,
+input[type=url].invalid:focus,
+input[type=tel].invalid:focus,
+input[type=password].invalid:focus {
+  border: 1px solid #ee545479;
+}
+
+input[type=file] {
+  padding: 0em;
+  margin: 0em;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--text-color-disabled);
+}
+
+input[type=file].invalid {
+  color: #a83a3a;
+}
+
+input[type=file]::file-selector-button {
+  margin-right: 5px;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: small;
+  padding: 0.5em 1em;
+  transition: var(--transition);
+
+  color: var(--text-color-disabled);
+  background-color: var(--primary-color);
+  border: 1px solid var(--tertiary-color);
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: rgb(from var(--secondary-color) r g b / 50%);
+  color: var(--text-color);
+}
+
+input[type=file]::file-selector-button:active {
+  background-color: rgb(from var(--secondary-color) r g b / 100%);
+}
+
+
+/* SCROLL BAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-color-disabled);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-color);
+}
