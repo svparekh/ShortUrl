@@ -15,12 +15,12 @@ export default function Header({ theme, toggleTheme }) {
          </div>
          <div className="header-right">
             <a href="https://www.setulparekh.com" className="link" title="View my portfolio">portfolio</a>
-            <label aria-checked="false" role="switch" className="switch" title="Toggle theme">
+            {/* <label aria-checked="false" role="switch" className="switch" title="Toggle theme">
                <input type="checkbox" onChange={toggleTheme} checked={theme === 'dark'} title="Toggle theme" />
                <span className="slider">
                   <span className="slider-inner"></span>
                </span>
-            </label>
+            </label> */}
 
             <label className="switch2">
                <input id="checkbox" type="checkbox" onChange={toggleTheme} checked={theme === 'light'} />

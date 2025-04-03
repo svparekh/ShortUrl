@@ -364,7 +364,7 @@
     width: 4em;
     height: 2.2em;
     border-radius: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 /* Hide default HTML checkbox */
@@ -382,11 +382,23 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #2a2a2a;
-    transition: 0.4s;
+    background-color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    transition: var(--transition);
     border-radius: 30px;
     overflow: hidden;
 }
+
+.slider2:hover {
+    background-color: rgb(from var(--secondary-color) r g b / 50%);
+
+}
+
+.slider2:active {
+    background-color: rgb(from var(--secondary-color) r g b / 100%);
+
+}
+
 
 .slider2:before {
     position: absolute;
@@ -402,7 +414,15 @@
 }
 
 .switch2 input:checked+.slider2 {
-    background-color: #80C2D9;
+    background-color: var(--accent-color);
+}
+
+.switch2 input:checked+.slider2:hover {
+    background-color: var(--logo-color);
+}
+
+.switch2 input:checked+.slider2:active {
+    background-color: #3795b8;
 }
 
 .switch2 input:checked+.slider2:before {

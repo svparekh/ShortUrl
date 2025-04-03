@@ -47,6 +47,7 @@
     cursor: pointer;
     color: var(--text-color);
     font-family: UbuntuMono, monospace;
+    transition: var(--transition);
 }
 
 .domain-dropdown {
