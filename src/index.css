@@ -69,10 +69,40 @@
 
   /* Transitions */
   --transition: all 0.4s ease;
-  --op-transition: all .4s ease, transform 0.5s ease;
+  --button-transition: background-color 0.15s ease, color 0.15s ease;
+  --click-tran-bg: background-color 0.15s ease;
+  --click-tran-c: color 0.15s ease;
+  --theme-tran-fill: fill 0.4s ease;
+  --theme-tran-bg: background-color 0.4s ease;
+  --theme-tran-bc: border-color 0.4s ease;
+  --theme-tran-c: color 0.4s ease;
+  --operator-transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   /* --op-transition: all .15s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
   /* --theme-transition: all .15s ease, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-  --quadratic-curve: cubic-bezier(.32, .72, 0, 1);
+  --ease-in-curve: cubic-bezier(.32, .72, 0, 1);
+  /* 
+  Bacgkround need:
+    - fill
+  
+  Operator cards need:
+    - bg
+    - color
+    - border color
+  
+  Buttons need:
+    - bg
+    - color
+    - theme
+
+    - box shadow
+    - transform
+  
+  Links need:
+    - color
+
+  Dialogs need:
+    -transform
+  */
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -124,8 +154,10 @@ p {
 }
 
 .link:hover,
-.link:active,
-.link:link {
+.link:active
+
+/* .link:link */
+  {
   color: var(--logo-color);
 }
 

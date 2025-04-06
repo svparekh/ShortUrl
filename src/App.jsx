@@ -69,7 +69,7 @@ function App() {
       </div>
 
       {/* Footer */}
-      <footer className='footer' style={{ fontFamily: 'Kaushan Script', transition: 'var(--transition)' }}>
+      <footer className='footer' style={{ fontFamily: 'Kaushan Script', transition: 'var(--theme-tran-c)' }}>
         Copyright © 2025 Setul Parekh. All rights reserved. | <a href='#' onClick={() => window.privacyPolicyDialog.showModal()}>Privacy Policy 🙊</a> | <TestDrawer></TestDrawer>
       </footer>
     </>

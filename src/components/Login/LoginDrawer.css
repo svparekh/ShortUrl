@@ -10,7 +10,7 @@
 #login-drawer-content {
     border-radius: 2em;
     height: auto;
-    transition: all 0.2s var(--quadratic-curve);
+    transition: all 0.2s var(--ease-in-curve);
 }
 
 #open-login-drawer-button {
@@ -32,7 +32,7 @@
 .login-drawer-page {
     transform: translateY(-15%) scale(0.9);
     opacity: 0;
-    transition: transform 0.2s var(--quadratic-curve), opacity 0.1s var(--quadratic-curve);
+    transition: transform 0.2s var(--ease-in-curve), opacity 0.1s var(--ease-in-curve);
 }
 
 @media screen and (max-width: 480px) {
