@@ -4,13 +4,13 @@
 
 #login-drawer {
     width: 410px;
-    height: 500px;
+    height: fit-content;
 }
 
 #login-drawer-content {
     border-radius: 2em;
     height: auto;
-    transition: all 0.2s var(--ease-in-curve);
+    /* transition: all 0.2s ease; */
 }
 
 #open-login-drawer-button {
@@ -24,24 +24,54 @@
     font-size: large;
 }
 
-.login-drawer-page-active {
-    transform: translateY(0%) scale(1) !important;
-    opacity: 1 !important;
-}
-
-.login-drawer-page {
-    transform: translateY(-15%) scale(0.9);
-    opacity: 0;
-    transition: transform 0.2s var(--ease-in-curve), opacity 0.1s var(--ease-in-curve);
-}
-
 @media screen and (max-width: 480px) {
     #login-drawer {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
     }
 
     #login-drawer-content {
-        border-radius: 0px;
+        /* border-radius: 0px; */
+        margin: 0.5em !important;
+        /* height: 100%; */
+        width: calc(100% - 1em);
+    }
+}
+
+
+
+
+.button__text {
+    transition: color var(--quick-transition-duration) var(--primary-curve);
+}
+
+.button--loading .button__text {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.button--loading::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid transparent;
+    border-top-color: #ebfaff;
+    border-radius: 50%;
+    animation: button-loading-spinner 0.5s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
     }
 }

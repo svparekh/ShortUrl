@@ -4,12 +4,35 @@ import './DefaultDialog.css';
 
 export default function PrivacyPolicyDialog() {
     return (
-        <dialog id="privacyPolicyDialog" className='primary-card-solid' title='Privacy Policy' style={{ maxWidth: '50%', maxHeight: '70%', overflow: 'auto' }}>
-            <form style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', justifyContent: 'space-between', padding: '0.75rem 1rem' }}>
-                <div style={{ textAlign: 'left', borderRadius: '1em', height: '90%' }}>
+        <dialog id="privacyPolicyDialog" className='primary-card-solid' title='Privacy Policy' style={{ overflow: 'auto' }}>
+            <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0.75rem 1rem', height: '100%' }}>
+                <div style={{
+                    textAlign: 'left',
+                    borderRadius: '1em',
+                    height: '90%',
+                    outline: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}>
                     <h2 style={{ textAlign: 'center' }}>Privacy Policy</h2>
-                    <div style={{ display: 'flex', justifyContent: 'start', textAlign: 'left', margin: '2em 0' }}>
-                        <div style={{ paddingLeft: '1em', paddingRight: '1em', overflow: 'auto', }}>
+                    <div style={{
+                        // margin: '2rem 0rem 2rem 0rem',
+                        overflowY: 'auto',
+                        overflowX: 'none'
+                    }}><div style={{
+                        // margin: '0rem 1rem',
+                        // marginRight: '1rem',
+                        gap: '1rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        // alignItems: 'center',
+                        flex: '1 1 auto',
+                    }}>
+
+
+
+                            {/* <div style={{ display: 'flex', justifyContent: 'start', textAlign: 'left', margin: '2em 0' }}>
+                        <div style={{ paddingLeft: '1em', paddingRight: '1em', overflow: 'auto', }}> */}
                             <p style={{ fontWeight: 'bold' }}>Effective Date: [4/1/2025]</p>
 
                             ShortUrl (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) values your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website shorturl.svparekh.com (&quot;Website&quot;) and use our URL shortener and QR code generator services (collectively, the &quot;Services&quot;). Please read this Privacy Policy carefully. By using our Services, you agree to the terms described in this Privacy Policy.
@@ -67,7 +90,7 @@ export default function PrivacyPolicyDialog() {
                         {/* </div> */}
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'end', height: 'fit-content' }}>
+                <div style={{ display: 'flex', justifyContent: 'end', height: 'fit-content', paddingTop: '1em' }}>
                     <button className='default-button' autoFocus={true} id="close-privacy-policy" value="default" formMethod='dialog' type='submit' title='Close'>Close</button>
                 </div>
 

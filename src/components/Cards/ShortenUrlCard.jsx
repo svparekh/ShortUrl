@@ -99,7 +99,7 @@ export default function ShortenUrlCard({ xTranslate }) {
         <div className={`card ${SHORTEN_URL} primary-card-blurred`} style={{ transform: `translateX(${xTranslate})` }}>
             {/* Input Section */}
             <div className={`card-contents ${SHORTEN_URL}`} style={{ flexDirection: 'column', alignItems: 'center', }}>
-                <h2>Shorten a URL ✂</h2>
+                <h2>Shorten a URL ✂️</h2>
                 {/* ✂ ✂️ */}
                 <form id={`${SHORTEN_URL}-form`} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', width: '100%', alignItems: 'start', gap: '0.25em' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', width: '100%', alignItems: 'start', gap: '0.5em' }}>
@@ -164,7 +164,7 @@ export default function ShortenUrlCard({ xTranslate }) {
             <div className={`operation-progress ${SHORTEN_URL}`}>
                 <div className={`operation-progress-value ${SHORTEN_URL}`}></div>
             </div>
-            <div className={`card-result ${SHORTEN_URL}`} style={{ opacity: '0', transition: 'var(--transition)', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+            <div className={`card-result ${SHORTEN_URL}`} style={{ opacity: '0', transition: 'none', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                 <h2>URL Generated</h2>
                 <a href='/'>Generate another!</a>
             </div>

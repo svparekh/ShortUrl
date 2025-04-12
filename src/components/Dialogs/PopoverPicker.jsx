@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
 
 import useClickOutside from "./useClickOutside";
@@ -14,7 +14,7 @@ export const PopoverPicker = ({ id, color, onChange }) => {
     const popover = useRef();
     const [isOpen, toggle] = useState(false);
 
-    const close = useCallback(() => toggle(false), []);
+    const close = useCallback(() => onClose(), []);
     useClickOutside(popover, close);
 
     function validateAndSetValueOnInput(event) {
@@ -25,12 +25,28 @@ export const PopoverPicker = ({ id, color, onChange }) => {
         }
         else if (target.checkValidity() == true) {
             target.classList.remove('invalid');
-            onChange(target.value);
+            // onChange(target.value);
         }
         else {
             target.classList.add('invalid');
         }
         target.reportValidity();
+        onChange(target.value);
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (!popover.current) return;
+            popover.current.classList.toggle('popover-active');
+        }, 0);
+    }, [isOpen]);
+
+    function onClose() {
+        if (!popover.current) return;
+        popover.current.classList.toggle('popover-active');
+        setTimeout(() => {
+            toggle(false);
+        }, 150);
     }
 
     return (
@@ -43,7 +59,7 @@ export const PopoverPicker = ({ id, color, onChange }) => {
             />
 
             {isOpen && (
-                <div className="popover primary-card-solid" ref={popover}>
+                <div id="popover-element" className="primary-card-solid popover" ref={popover}>
                     <HexColorPicker color={color} onChange={onChange} />
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1em' }}>
                         <label htmlFor="hex-color-input">HEX</label>
@@ -54,7 +70,7 @@ export const PopoverPicker = ({ id, color, onChange }) => {
                             onInput={(e) => { if (typeof e.target.reportValidity === 'function') { validateAndSetValueOnInput(e); } }}
                             pattern='^#(?:[0-9a-fA-F]{3,4}){1,2}$'
                             style={{ borderRadius: '0.5em' }}
-                            placeholder={color}
+                            value={color}
                             autoComplete='off'
                             autoCorrect='off'
                         ></input>

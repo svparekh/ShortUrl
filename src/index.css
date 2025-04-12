@@ -68,42 +68,43 @@
 
 
   /* Transitions */
-  --transition: all 0.4s ease;
-  --button-transition: background-color 0.15s ease, color 0.15s ease;
-  --click-tran-bg: background-color 0.15s ease;
-  --click-tran-c: color 0.15s ease;
-  --theme-tran-fill: fill 0.4s ease;
-  --theme-tran-bg: background-color 0.4s ease;
-  --theme-tran-bc: border-color 0.4s ease;
-  --theme-tran-c: color 0.4s ease;
-  --operator-transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --slow-transition-duration: 0.5s;
+  --quick-transition-duration: 0.15s;
+  --primary-curve: ease;
+  --secondary-curve: cubic-bezier(.32, .72, 0, 1);
+  --one-bounce-curve: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --bounce-curve: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --operator-transition: transform 0.6s var(--secondary-curve);
   /* --op-transition: all .15s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
   /* --theme-transition: all .15s ease, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-  --ease-in-curve: cubic-bezier(.32, .72, 0, 1);
+  /* cubic-bezier(0.68, -0.55, 0.265, 1.55) */
   /* 
-  Bacgkround need:
-    - fill
+    Bacgkround need:
+      - fill
+    
+    Operator cards need:
+      - bg
+      - color
+      - border color
+    
+    Buttons need:
+      - bg
+      - color
+      - theme
   
-  Operator cards need:
-    - bg
-    - color
-    - border color
+      - box shadow
+      - transform
+    
+    Links need:
+      - color
   
-  Buttons need:
-    - bg
-    - color
-    - theme
+    Dialogs need:
+      -transform
+    */
+}
 
-    - box shadow
-    - transform
-  
-  Links need:
-    - color
-
-  Dialogs need:
-    -transform
-  */
-
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -117,7 +118,7 @@
   text-rendering: optimizeLegibility;
   /* -webkit-font-smoothing: antialiased; */
   /* -moz-osx-font-smoothing: grayscale; */
-  transition: background-color 0.4s ease;
+  transition: background-color var(--slow-transition-duration) var(--primary-curve);
 }
 
 :root:has(body[data-theme='light']) {
@@ -149,7 +150,7 @@ p {
 .link {
   font-family: 'Kaushan Script', cursive;
   color: var(--text-color);
-  transition: var(--transition);
+  transition: color var(--quick-transition-duration) var(--primary-curve);
   font-size: medium;
 }
 
@@ -161,6 +162,16 @@ p {
   color: var(--logo-color);
 }
 
+.slide-away {
+  transform: translateY(-15%) scale(0.9);
+  opacity: 0;
+  transition: transform var(--quick-transition-duration) var(--secondary-curve), opacity var(--quick-transition-duration) var(--secondary-curve);
+}
+
+.slide-away-active {
+  transform: translateY(0%) scale(1) !important;
+  opacity: 1 !important;
+}
 
 .primary-card-blurred {
   color: var(--text-color);
@@ -196,12 +207,15 @@ p {
 
 
 .default-button {
-  border-radius: 0.5em;
+  border-radius: 1em;
   padding: 0.35em 1em 0.4em 1em;
   font-family: inherit;
   cursor: pointer;
   font-size: medium;
-  transition: var(--transition);
+  transition:
+    background-color var(--quick-transition-duration) var(--primary-curve),
+    border-color var(--quick-transition-duration) var(--primary-curve),
+    color var(--quick-transition-duration) var(--primary-curve);
 
   color: var(--text-color-disabled);
   background-color: var(--primary-color);
@@ -315,8 +329,12 @@ textarea {
   overflow: hidden;
   background-color: var(--background-color);
   color: var(--text-color);
-  -webkit-transition: border 0.15s ease;
-  transition: border 0.15s ease;
+  -webkit-transition:
+    border-color var(--quick-transition-duration) var(--primary-curve),
+    background-color var(--slow-transition-duration) var(--primary-curve);
+  transition:
+    border-color var(--quick-transition-duration) var(--primary-curve),
+    background-color var(--slow-transition-duration) var(--primary-curve);
   font-family: 'Ubuntu Mono', monospace;
   font-size: 0.875rem;
   border: 1px solid transparent;
@@ -353,9 +371,14 @@ input[type=password] {
   overflow: hidden;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: var(--transition);
-  -webkit-transition: var(--transition);
-  transition: var(--transition);
+  -webkit-transition:
+    background-color var(--slow-transition-duration) var(--primary-curve),
+    border-color var(--slow-transition-duration) var(--primary-curve),
+    color var(--slow-transition-duration) var(--primary-curve);
+  transition:
+    background-color var(--slow-transition-duration) var(--primary-curve),
+    border-color var(--quick-transition-duration) var(--primary-curve),
+    color var(--slow-transition-duration) var(--primary-curve);
   font-family: 'Ubuntu Mono', monospace;
   font-size: 0.875rem;
   border: 1px solid transparent;
@@ -414,7 +437,10 @@ input[type=file]::file-selector-button {
   cursor: pointer;
   font-size: small;
   padding: 0.5em 1em;
-  transition: var(--transition);
+  transition:
+    background-color var(--quick-transition-duration) var(--primary-curve),
+    border-color var(--quick-transition-duration) var(--primary-curve),
+    color var(--quick-transition-duration) var(--primary-curve);
 
   color: var(--text-color-disabled);
   background-color: var(--primary-color);
@@ -430,6 +456,116 @@ input[type=file]::file-selector-button:active {
   background-color: rgb(from var(--secondary-color) r g b / 100%);
 }
 
+.slider {
+  /* slider */
+  --slider-width: 100%;
+  --slider-height: 7px;
+  --slider-bg: rgba(from var(--secondary-color) r g b / 100%);
+  --slider-border-radius: 999px;
+  /* level */
+  --level-color: var(--text-color);
+  /* icon */
+  --icon-margin: 5px;
+  --icon-color: var(--slider-bg);
+  --icon-size: 24px;
+}
+
+.slider {
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.slider .slider-icon {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: var(--icon-margin);
+  color: var(--icon-color);
+  width: var(--icon-size);
+  height: auto;
+}
+
+.slider .level {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  background: var(--slider-bg);
+  overflow: hidden;
+  border-radius: var(--slider-border-radius);
+  -webkit-transition: height var(--quick-transition-duration) var(--primary-curve);
+  -o-transition: height var(--quick-transition-duration) var(--primary-curve);
+  transition: height var(--quick-transition-duration) var(--primary-curve);
+  cursor: inherit;
+  /* border: 1px solid var(--secondary-color) */
+}
+
+.slider .level::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  -webkit-box-shadow: -200px 0 0 200px var(--level-color);
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+
+.slider:hover .level {
+  height: calc(var(--slider-height) * 1.75);
+}
+
+/* input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 7px;
+  border-radius: 4px;
+  background-color: var(--text-color);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background-color: var(--text-color-disabled);
+  height: 7px;
+  border-radius: 4px;
+  background-image: linear-gradient(to right, var(--text-color), var(--text-color));
+  background-size: 0% 100%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  transition: background-size 0.2s;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background-size: 100% 100%;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #0093E9;
+  cursor: pointer;
+} */
 
 /* SCROLL BAR */
 ::-webkit-scrollbar {

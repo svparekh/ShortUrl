@@ -2,7 +2,7 @@
     font-family: inherit;
     cursor: pointer;
     font-size: medium;
-    transition: var(--transition);
+    transition: background-color var(--quick-transition-duration) var(--primary-curve), color var(--quick-transition-duration) var(--primary-curve);
 
     min-height: 150px;
     width: 100%;

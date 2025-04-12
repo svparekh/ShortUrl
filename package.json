@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^11.5.0",
+    "@supabase/supabase-js": "^2.49.4",
     "generate-react-cli": "^8.4.9",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",

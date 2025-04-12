@@ -6,7 +6,6 @@
     justify-content: center;
     width: auto;
     height: 100%;
-    /* transition: var(--transition); */
     color: var(--text-color);
     padding: 1.5em;
     background-color: #fff;
@@ -24,7 +23,7 @@
     left: -1em;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    transition: var(--transition);
+    transition: transform var(--quick-transition-duration) var(--primary-curve);
     border: none;
 }
 
@@ -48,7 +47,6 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: var(--transition);
     border: none;
 }
 
@@ -87,6 +85,7 @@
     height: 1.25em;
     filter: invert(1);
     opacity: 0.75;
+    transition: filter var(--slow-transition-duration) var(--primary-curve);
 }
 
 [data-theme="light"] #download-qr-code-icon {

@@ -1,3 +1,10 @@
+import { createClient } from '@supabase/supabase-js'
+
+// Create a single supabase client for interacting with your database
+const supabaseUrl = ''
+const supabaseKey = '' // process.env.SUPABASE_KEY
+export const supabase = createClient(supabaseUrl, supabaseKey)
+
 export const QR_CODE = 'qr-code';
 export const SHORTEN_URL = 'shorten-url';
 export const DEFAULT_QR_CODE_VALUE = '';

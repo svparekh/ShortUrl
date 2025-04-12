@@ -6,7 +6,10 @@ import { Drawer } from 'vaul';
 import { MyLinksItem, SHORTEN_URL } from '../../vars';
 import ShortUrlMyLinksItemComponent from './Items/ShortUrlMyLinksItemComponent.jsx';
 import QrCodeMyLinksItemComponent from './Items/QrCodeMyLinksItemComponent.jsx';
-
+import LoginIllustrationImage from '../../assets/login_illustration.svg';
+import EmptyIllustration from '../../assets/empty_illustration.svg';
+import { useState, useEffect } from 'react';
+import { supabase } from '../../vars';
 
 export default function MyLinks({ links }) {
     MyLinks.propTypes = {
@@ -15,6 +18,21 @@ export default function MyLinks({ links }) {
 
     // 🔗
     // style={{ padding: '1em 1.6em 1em 2em' }}
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        supabase.auth.onAuthStateChange((event, session) => {
+            setTimeout(async () => {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                    setIsLoggedIn(true);
+                }
+                else {
+                    setIsLoggedIn(false);
+                }
+            }, 0)
+        })
+    }, []);
 
     return (
         <Drawer.Root activeSnapPoint={1}>
@@ -54,26 +72,47 @@ export default function MyLinks({ links }) {
                         marginTop: '1rem',
                         marginBottom: '1rem'
                     }} />
-                    <Drawer.Title></Drawer.Title>
+                    <Drawer.Title style={{ textAlign: 'center', marginBottom: '1em' }}>My Links and QR Codes</Drawer.Title>
                     {/* Content */}
-                    <div style={{
-                        margin: '0rem 0rem 1rem 1rem',
-                        overflowY: 'auto',
-                        overflowX: 'none'
-                    }}><div style={{
-                        // margin: '0rem 1rem',
-                        marginRight: '1rem',
-                        gap: '1rem',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        flex: '1 1 auto',
-                    }}>
-                            {
-                                links.map(link => link.type === `${SHORTEN_URL}` ? <ShortUrlMyLinksItemComponent key={link.id} item={link} /> : <QrCodeMyLinksItemComponent key={link.id} item={link} />)
-                            }
-                        </div>
-                    </div>
+                    {
+                        isLoggedIn ? links.length === 0 ? (
+                            <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', margin: '0 1em' }}>
+                                <img src={EmptyIllustration} alt='Empty Illustration' style={{ width: '50%', height: '50%', userSelect: 'none', WebkitUserSelect: 'none', pointerEvents: 'none' }} />
+                                <h3>Nothing saved yet 🤷‍♂️</h3>
+                                <p>Generate a link or save a QR code and it will show up here!</p>
+                            </div>
+                        ) : (
+                            <div style={{
+                                margin: '0rem 0rem 1rem 1rem',
+                                overflowY: 'auto',
+                                overflowX: 'none'
+                            }}><div style={{
+                                // margin: '0rem 1rem',
+                                marginRight: '1rem',
+                                gap: '1rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                flex: '1 1 auto',
+                            }}>
+                                    {
+                                        links.map((link) => (
+                                            link.type === SHORTEN_URL ? (
+                                                <ShortUrlMyLinksItemComponent key={link.id} item={link} />
+                                            ) : (
+                                                <QrCodeMyLinksItemComponent key={link.id} item={link} />
+                                            )))
+                                    }
+                                </div>
+                            </div>
+                        ) : (
+                            <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', margin: '0 1em' }}>
+                                <img src={LoginIllustrationImage} alt='Login Illustration' style={{ height: '50%', userSelect: 'none', WebkitUserSelect: 'none', pointerEvents: 'none' }} />
+                                <h3>You are not signed in 🗝️</h3>
+                                <p>Login in or create an account to save your links and QR codes!</p>
+                            </div>
+                        )
+                    }
                 </Drawer.Content>
             </Drawer.Portal>
         </Drawer.Root>

@@ -11,7 +11,7 @@
     outline: none;
     background-color: var(--background-color);
     color: var(--text-color);
-    transition: var(--transition);
+    transition: background-color var(--slow-transition-duration) var(--primary-curve), border-color var(--quick-transition-duration) var(--primary-curve);
     font-family: UbuntuMono, monospace;
     font-size: 0.875rem;
 
@@ -47,7 +47,7 @@
     cursor: pointer;
     color: var(--text-color);
     font-family: UbuntuMono, monospace;
-    transition: var(--transition);
+    transition: color var(--slow-transition-duration) var(--primary-curve);
 }
 
 .domain-dropdown {
@@ -55,7 +55,7 @@
     top: calc(100% + 0.25rem);
     left: 0px;
 
-    transition: all .15s ease, max-height .5s cubic-bezier(.32, .72, 0, 1);
+    transition: max-height var(--slow-transition-duration) var(--secondary-curve), opacity var(--quick-transition-duration) var(--primary-curve);
     padding: 0;
     margin: 0;
     list-style: none;
@@ -88,7 +88,7 @@
     color: var(--text-color);
     background-color: transparent;
     padding: 0.5rem 0.75rem;
-    transition: var(--transition);
+    transition: background-color var(--quick-transition-duration) var(--primary-curve);
 }
 
 .domain-dropdown-item:hover {
@@ -102,7 +102,6 @@
     color: var(--text-color-disabled);
     background-color: transparent;
     padding: 0.5rem 0.75rem;
-    transition: var(--transition);
     place-items: center;
     display: flex;
     justify-content: center;

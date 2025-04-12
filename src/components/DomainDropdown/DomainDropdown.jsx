@@ -67,7 +67,7 @@ export default function DomainDropdown({ options, onSelect, disabled }) {
                     position: 'absolute',
                     right: '0.5rem',
                     pointerEvents: 'none',
-                    transition: 'var(--transition)',
+                    transition: 'transform var(--slow-transition-duration) var(--one-bounce-curve), color var(--slow-transition-duration) var(--primary-curve)',
                     transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                     userSelect: 'none',
                     WebkitUserSelect: 'none',

@@ -37,6 +37,7 @@ export default function QrCodeMyLinksItemComponent({ item }) {
     // }
 
     function onDownloadClick() {
+        // updateDoc(userRef, { qrCodeDownloads: increment(1) }); // update downloads count
         qrcodeRef.current.download('png', item.settings.title);
         setShowContent(false);
     }
@@ -69,10 +70,14 @@ export default function QrCodeMyLinksItemComponent({ item }) {
                     <div className='link-item-text'>
                         <h3>{item.settings.title}</h3>
                         <p>{item.value}</p>
-                        <p style={{ fontSize: 'smaller' }}>Click me to download!</p>
+                        <p style={{ fontSize: 'smaller' }}>March 5, 2023</p>
+                        <button className="default-button red-button" style={{ margin: '0', padding: '0' }} title='Remove QR Code from your list' onClick={() => { }}>Delete</button>
                     </div>
                 </div>
-                <button id='link-item-button' className="default-button" style={{ margin: 'auto 3em', padding: '1em 2em', borderRadius: '1em' }} title='Download QR Code' onClick={onDownloadClick}>Download</button>
+                <div>
+                    {/* <button id='link-item-button' className="default-button" style={{ margin: 'auto 0.5em', padding: '0.5em 1em', borderRadius: '1em' }} title='Edit QR Code' onClick={() => { }}>Edit</button> */}
+                    <button id='link-item-button' className="default-button primary-button" style={{ margin: 'auto 3em auto 0.5em' }} title='Download QR Code' onClick={onDownloadClick}>Download</button>
+                </div>
             </> : <h3 style={{ color: 'var(--text-color)' }}>Downloaded</h3>
             }
         </div>
